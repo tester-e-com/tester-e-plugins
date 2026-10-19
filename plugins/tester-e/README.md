@@ -32,7 +32,7 @@ Always type the commands with their prefix (`/tester-e:init`) — Claude Code ha
 - **Update:** `/plugin marketplace update tester-e`, then `/reload-plugins`.
 - **Remove:** `/plugin uninstall tester-e@tester-e` — tests in tester-e and your `.tester-e/`
   files stay.
-- **Added before 19 October 2026 from `ZekiBoyraz/tester-e`?** Run
+- **Rub**
   `/plugin marketplace remove tester-e` and install again with the commands above.
 
 ## Use
