@@ -27,11 +27,6 @@ and **Plugins → Claude Code** in the [tester-e docs](https://app.tester-e.com/
 
 **Update:** `/plugin marketplace update tester-e`, then `/reload-plugins`.
 
-### Moved from `ZekiBoyraz/tester-e`
-
-Until 19 October 2026 this marketplace lived at `ZekiBoyraz/tester-e`. If you added it from
-there, switch once — the old address no longer receives updates:
-
 ```text
 /plugin marketplace remove tester-e
 /plugin marketplace add tester-e-com/tester-e-plugins
