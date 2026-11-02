@@ -22,7 +22,7 @@ they connect to tester-e through its MCP server — see **MCP Connector** in the
 
 Then run `/mcp`, choose **plugin:tester-e:tester-e** → **Authenticate**, and sign in with your
 tester-e account. The commands appear as `/tester-e:init`, `/tester-e:pull`, `/tester-e:sync`,
-`/tester-e:execute` and `/tester-e:ci`. Full guide: [plugins/tester-e](plugins/tester-e/README.md)
+`/tester-e:execute`, `/tester-e:coverage` and `/tester-e:ci`. Full guide: [plugins/tester-e](plugins/tester-e/README.md)
 and **Plugins → Claude Code** in the [tester-e docs](https://app.tester-e.com/docs).
 
 **Update:** `/plugin marketplace update tester-e`, then `/reload-plugins`.

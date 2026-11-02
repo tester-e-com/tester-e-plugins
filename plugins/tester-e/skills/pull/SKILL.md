@@ -23,7 +23,10 @@ Pull existing tester-e tests into this repository. Follow the `tester-e-tests` s
    (`webSteps`, `apiConfig`, `performanceConfig`, `automationType`…) — write them in the
    file in snake_case (`web_steps`, `api_config`, …); keep the contents of each step and
    config exactly as they are. Never copy a secret value into a file — replace it
-   with a `{{VARIABLE}}` and tell the user.
+   with a `{{VARIABLE}}` and tell the user. Keep the item the test is linked to: if
+   `extraMetadata` has `issue_ref`, `jira_issue_key` or `work_item_id`, write it as
+   `issue: PROJ-123` / `issue: ADO-42` — the sync rewrites the metadata, so a link not
+   in the file is lost.
 5. Run `validate_test_cases` on what you wrote. Do not silently "fix" steps: list every
    problem with its file (steps the runner cannot perform, missing targets…) and ask
    before changing a test's behaviour.

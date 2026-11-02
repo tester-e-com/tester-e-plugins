@@ -44,6 +44,7 @@ Always type the commands with their prefix (`/tester-e:init`) — Claude Code ha
 | *"write tests for the checkout flow"* | Claude writes `.tester-e/tests/<suite>/<name>.yaml` (WEB, API, performance, mobile) | none |
 | `/tester-e:sync [--prune]` | Validate, then create/update cases, suites and plans | creating a case costs its steps; unchanged cases cost nothing |
 | `/tester-e:execute [plan \| suite \| test key …] [env=…]` | Run with self-healing **off**, report each failure with its step | executed steps |
+| `/tester-e:coverage [suite \| test key …] [--apply]` | Check each test against its JIRA / Azure DevOps item (`issue: PROJ-123`), list the gaps, add the missing steps | one credit per step analysed (the price is shown first); adding steps is free |
 | `/tester-e:ci [github \| gitlab \| azure]` | Write a GitHub Actions, GitLab CI or Azure Pipelines job that runs the plan | CI runs: executed steps |
 
 - A **test key** is the file path under `.tester-e/tests/` without `.yaml`, e.g.

@@ -16,13 +16,19 @@ Translate the scenario into steps.
 
 1. **Read the schema before writing.** Call the MCP tool `describe_step_schema`
    with `automation_type: WEB`, `API`, `PERFORMANCE` or `MOBILE`. Use only the actions, assertion types
-   and operators it lists. Its lists are what the runner accepts today.
+   and operators it lists — and write its **field names** exactly (`query_params`,
+   `extract_variables`, `requestBody`…). Its lists are what the runner accepts
+   today; any other field is refused by `validate_test_cases`, `upsert_test_cases`
+   and `save_test_case`, because the runner would drop it and the step would pass
+   without it.
 2. **Validate before saving.** `validate_test_cases` is free and writes nothing.
    `upsert_test_cases` refuses anything it rejects. A step the runner does not
    understand would otherwise do nothing and pass.
 3. **Every test checks something.** End a WEB test with `expect_visible`,
    `expect_text`, `expect_url` or `assert`. Give every API step at least a
-   `status_code` assertion.
+   `status_code` assertion — the expected status is an assertion
+   (`{type: status_code, operator: equals, expected: 201}`), there is no
+   `expected_status` field.
 4. **No secrets in files.** Use `{{VARIABLE}}` placeholders. Values live in the
    tester-e environment; secret ones are set by the user in tester-e →
    Test Environments, or passed to `ensure_environment` as `secrets` only when
@@ -37,6 +43,12 @@ Translate the scenario into steps.
    like in the tester-e UI. Re-syncing unchanged tests costs nothing. A run costs
    its executed steps. Say roughly what an action will cost before a large sync
    or run.
+7. **API calls inside a WEB test.** To set up state through the API and then
+   test the UI, write an API test and run it from the web test with a
+   `call_test` step: its assertions and extracted variables apply, and the
+   variables are usable as `{{VAR}}` in the later web steps. A web
+   `api_request` step only sends one request (HTTP ≥ 400 fails it); it has no
+   assertions, expected status or extraction.
 
 ## Files
 
@@ -179,6 +191,13 @@ mobile:
   osVersion: "14.0"
   appPackage: com.example.shop      # or appPath of an uploaded build, or bundleId on iOS
 ```
+
+## Linking a test to its item
+
+Add `issue:` to a test file when the test verifies a tracked item — `issue: PROJ-123` (JIRA)
+or `issue: ADO-42` (Azure DevOps work item). It is stored with the case on sync, and
+`/tester-e:coverage` reads it to check the test covers everything the item asks for. Never
+invent one: leave it out if the user has not named the item.
 
 ## Keys
 
